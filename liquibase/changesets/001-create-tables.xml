@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <changeSet id="001" author="developer">
+        <comment>Create tables for distance calculator application</comment>
+
+        <!-- Создание таблицы городов -->
+        <createTable tableName="city">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="latitude" type="decimal(10,6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="decimal(10,6)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Создание таблицы расстояний -->
+        <createTable tableName="distance">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="from_city_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_distance_from_city" references="city(id)"/>
+            </column>
+            <column name="to_city_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_distance_to_city" references="city(id)"/>
+            </column>
+            <column name="distance" type="decimal(10,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Создание индекса для быстрого поиска расстояний -->
+        <createIndex indexName="idx_distance_from_to" tableName="distance">
+            <column name="from_city_id"/>
+            <column name="to_city_id"/>
+        </createIndex>
+
+        <!-- Обеспечение уникальности пары городов в таблице расстояний -->
+        <addUniqueConstraint
+                constraintName="uq_from_to_city"
+                tableName="distance"
+                columnNames="from_city_id, to_city_id"/>
+    </changeSet>
+</databaseChangeLog>

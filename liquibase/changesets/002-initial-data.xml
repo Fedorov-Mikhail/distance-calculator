@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <changeSet id="002" author="developer">
+        <comment>Add initial data for testing</comment>
+
+        <!-- Добавление нескольких городов для тестирования -->
+        <insert tableName="city">
+            <column name="name" value="Москва"/>
+            <column name="latitude" value="55.755826"/>
+            <column name="longitude" value="37.617300"/>
+        </insert>
+        <insert tableName="city">
+            <column name="name" value="Санкт-Петербург"/>
+            <column name="latitude" value="59.939099"/>
+            <column name="longitude" value="30.315877"/>
+        </insert>
+        <insert tableName="city">
+            <column name="name" value="Новосибирск"/>
+            <column name="latitude" value="55.008353"/>
+            <column name="longitude" value="82.935733"/>
+        </insert>
+        <insert tableName="city">
+            <column name="name" value="Екатеринбург"/>
+            <column name="latitude" value="56.838011"/>
+            <column name="longitude" value="60.597474"/>
+        </insert>
+
+        <!-- Добавление тестовых расстояний для матрицы расстояний -->
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="1"/> <!-- Москва -->
+            <column name="to_city_id" valueNumeric="2"/> <!-- Санкт-Петербург -->
+            <column name="distance" valueNumeric="634.88"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="1"/> <!-- Москва -->
+            <column name="to_city_id" valueNumeric="3"/> <!-- Новосибирск -->
+            <column name="distance" valueNumeric="2811.31"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="1"/> <!-- Москва -->
+            <column name="to_city_id" valueNumeric="4"/> <!-- Екатеринбург -->
+            <column name="distance" valueNumeric="1417.69"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="2"/> <!-- Санкт-Петербург -->
+            <column name="to_city_id" valueNumeric="1"/> <!-- Москва -->
+            <column name="distance" valueNumeric="634.88"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="2"/> <!-- Санкт-Петербург -->
+            <column name="to_city_id" valueNumeric="3"/> <!-- Новосибирск -->
+            <column name="distance" valueNumeric="3336.2"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="2"/> <!-- Санкт-Петербург -->
+            <column name="to_city_id" valueNumeric="4"/> <!-- Екатеринбург -->
+            <column name="distance" valueNumeric="2018.58"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="3"/> <!-- Новосибирск -->
+            <column name="to_city_id" valueNumeric="1"/> <!-- Москва -->
+            <column name="distance" valueNumeric="2811.31"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="3"/> <!-- Новосибирск -->
+            <column name="to_city_id" valueNumeric="2"/> <!-- Санкт-Петербург -->
+            <column name="distance" valueNumeric="3336.2"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="3"/> <!-- Новосибирск -->
+            <column name="to_city_id" valueNumeric="4"/> <!-- Екатеринбург -->
+            <column name="distance" valueNumeric="1421.76"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="4"/> <!-- Екатеринбург -->
+            <column name="to_city_id" valueNumeric="1"/> <!-- Москва -->
+            <column name="distance" valueNumeric="1417.69"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="4"/> <!-- Екатеринбург -->
+            <column name="to_city_id" valueNumeric="2"/> <!-- Санкт-Петербург -->
+            <column name="distance" valueNumeric="2018.58"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city_id" valueNumeric="4"/> <!-- Екатеринбург -->
+            <column name="to_city_id" valueNumeric="3"/> <!-- Новосибирск -->
+            <column name="distance" valueNumeric="1421.76"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
